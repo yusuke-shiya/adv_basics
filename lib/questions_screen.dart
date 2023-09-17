@@ -26,7 +26,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   @override
   Widget build(context) {
     final question = questionList.questions[questionIndex];
-    return GradientContainer.orange(
+    return GradientContainer(
+      begin: question.color.withOpacity(0.9),
+      end: question.color.withOpacity(1),
       child: Container(
         margin: const EdgeInsets.all(40),
         child: SizedBox(
