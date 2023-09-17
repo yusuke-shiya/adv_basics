@@ -42,19 +42,34 @@ class ResultScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                '$numTotalQuestions問中$numCorrectAnswers問正解',
+                '正答率: ${(numCorrectAnswers / numTotalQuestions * 100).round()}%',
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
               ),
-              const SizedBox(height: 40),
+              const SizedBox(height: 80),
               SizedBox(
                 height: 300,
                 child: SingleChildScrollView(
                   child: QuestionSummary(summaryData),
                 ),
               ),
-              const SizedBox(height: 40),
-              TextButton(
+              const SizedBox(height: 80),
+              TextButton.icon(
+                icon: const Icon(
+                  Icons.restart_alt,
+                  color: Colors.white,
+                ),
                 onPressed: startQuiz,
-                child: const Text('Restart'),
+                label: const Text(
+                  'Restart',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
               ),
             ],
           ),
