@@ -2,6 +2,8 @@ import 'package:adv_basics/data/question_list.dart';
 import 'package:flutter/material.dart';
 import 'start_screeen.dart';
 import 'questions_screen.dart';
+import 'result_screen.dart';
+import 'question_summary.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -16,14 +18,37 @@ class _QuizState extends State<Quiz> {
 
   @override
   void initState() {
-    activeScreen = StartScreen(switchScreen);
+    activeScreen = StartScreen(startQuiz);
     super.initState();
   }
 
-  void switchScreen() {
+  void switchScreen(Widget screen) {
     setState(() {
-      activeScreen = QuestionsScreen(chooseAnswer);
+      activeScreen = screen;
     });
+  }
+
+  void startQuiz() {
+    setState(() {
+      answers.clear();
+    });
+    switchScreen(QuestionsScreen(chooseAnswer));
+  }
+
+  List<Map<String, Object>> getSummaryData() {
+    final List<Map<String, Object>> summaryData = [];
+    var index = 0;
+    for (var answer in answers) {
+      final question = questionList.questions[index];
+      summaryData.add({
+        'questionIndex': index,
+        'question': question.question,
+        'yourAnswer': answer,
+        'correctAnswer': question.answers[question.correctAnswerIndex],
+      });
+      index++;
+    }
+    return summaryData;
   }
 
   void chooseAnswer(String answer) {
@@ -32,8 +57,12 @@ class _QuizState extends State<Quiz> {
     });
     if (!questionList.hasNextQuestion(answers.length - 1)) {
       setState(() {
-        answers.clear();
-        activeScreen = StartScreen(switchScreen);
+        switchScreen(
+          ResultScreen(
+            startQuiz: startQuiz,
+            summaryData: getSummaryData(),
+          ),
+        );
       });
     }
   }
