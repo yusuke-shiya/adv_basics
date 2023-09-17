@@ -33,13 +33,15 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             children: [
               Text(
                 question.question,
+                textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
+                  height: 1.6,
                 ),
               ),
-              const SizedBox(height: 24),
+              const SizedBox(height: 56),
               ...question.shuffledAnswers.map((answer) => AnswerButton(
                     onPressed: answerQuestion,
                     answerText: answer,
