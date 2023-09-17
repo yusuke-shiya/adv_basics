@@ -35,22 +35,6 @@ class _QuizState extends State<Quiz> {
     switchScreen(QuestionsScreen(chooseAnswer));
   }
 
-  List<Map<String, Object>> getSummaryData() {
-    final List<Map<String, Object>> summaryData = [];
-    var index = 0;
-    for (var answer in answers) {
-      final question = questionList.questions[index];
-      summaryData.add({
-        'questionIndex': index,
-        'question': question.question,
-        'yourAnswer': answer,
-        'correctAnswer': question.answers[question.correctAnswerIndex],
-      });
-      index++;
-    }
-    return summaryData;
-  }
-
   void chooseAnswer(String answer) {
     setState(() {
       answers.add(answer);
@@ -60,7 +44,7 @@ class _QuizState extends State<Quiz> {
         switchScreen(
           ResultScreen(
             startQuiz: startQuiz,
-            summaryData: getSummaryData(),
+            answers: answers,
           ),
         );
       });

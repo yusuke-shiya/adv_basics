@@ -13,30 +13,19 @@ class QuestionSummary extends StatelessWidget {
         return Row(
           children: [
             Text(((data['questionIndex'] as int) + 1).toString()),
-            Column(
-              children: [
-                Text(data['question'] as String),
-                const SizedBox(height: 4),
-                Text(data['yourAnswer'] as String),
-                Text(data['correctAnswer'] as String),
-              ],
+            Expanded(
+              child: Column(
+                children: [
+                  Text(data['question'] as String),
+                  const SizedBox(height: 4),
+                  Text(data['yourAnswer'] as String),
+                  Text(data['correctAnswer'] as String),
+                ],
+              ),
             )
           ],
         );
       }).toList(),
-      // children: [
-      // Row(children: [
-      //   Text('回答No'),
-      //   Column(
-      //     children: [
-      //       Text('問題'),
-      //       SizedBox(height: 4),
-      //       Text('回答'),
-      //       Text('正答'),
-      //     ],
-      //   )
-      // ]),
-      // ],
     );
   }
 }
