@@ -1,4 +1,4 @@
-import 'package:adv_basics/data/question_list.dart';
+import 'package:akatoki/data/question_list.dart';
 import 'package:flutter/material.dart';
 import 'start_screeen.dart';
 import 'questions_screen.dart';
