@@ -45,7 +45,12 @@ class ResultScreen extends StatelessWidget {
                 '$numTotalQuestions問中$numCorrectAnswers問正解',
               ),
               const SizedBox(height: 40),
-              QuestionSummary(summaryData),
+              SizedBox(
+                height: 300,
+                child: SingleChildScrollView(
+                  child: QuestionSummary(summaryData),
+                ),
+              ),
               const SizedBox(height: 40),
               TextButton(
                 onPressed: startQuiz,
